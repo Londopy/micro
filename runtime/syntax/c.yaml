@@ -30,6 +30,15 @@ rules:
     - constant.number: "(\\b0[Xx]([0-9A-Za-z]*[.][0-9A-Za-z]+|[0-9A-Za-z]+[.][0-9A-Za-z]*)[Pp][+-]?[0-9]+[FfLl]?\\b)"
     - constant.bool: "(\\b(true|false|NULL|nullptr|TRUE|FALSE)\\b)"
 
+      # #include lines are a region so that the header name (e.g. <float.h>)
+      # is not matched by the type/identifier rules above
+    - preproc:
+        start: "^[[:space:]]*#[[:space:]]*include\\b"
+        end: "$"
+        rules:
+            - constant.string: "<[^>]*>|\"[^\"]*\""
+            - comment: "//.*|/\\*.*?\\*/"
+
     - constant.string:
         start: "\""
         end: "\""
