@@ -22,6 +22,8 @@ rules:
     - preproc: "^[[:space:]]*#[[:space:]]*(define|(un|ifn?)def|endif|el(if|se)|if|warning|error|pragma).*$"
     - preproc: "__[A-Z0-9_]*__"
 
+    - special: "^[[:space:]]*[#|@][[:space:]]*(import|include)[[:space:]]*[\"|<].*\\/?[>|\"][[:space:]]*$"
+
     - statement: "([.:;,+*|=!\\%\\[\\]]|<|>|/|-|&)"
 
     - constant.number: "(\\b(-?)?[0-9]+\\b|\\b\\[0-9]+\\.[0-9]+\\b|\\b0x[0-9a-fA-F]+\\b)"
@@ -32,7 +34,7 @@ rules:
     - constant.string: "'.'"
 
       # #include lines are a region so that the header name (e.g. <float.h>)
-      # is not matched by the type/identifier rules above
+      # is not matched by the type rules above
     - special:
         start: "^[[:space:]]*#[[:space:]]*(include(_next)?|import)\\b"
         end: "$"

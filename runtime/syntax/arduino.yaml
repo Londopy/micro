@@ -73,11 +73,12 @@ rules:
     - constant: "(__attribute__[[:space:]]*\\(\\([^)]*\\)\\)|__(aligned|asm|builtin|hidden|inline|packed|restrict|section|typeof|weak)__)"
 
       # #include lines are a region so that the header name (e.g. <float.h>)
-      # is not matched by the type/identifier rules above
+      # is not matched by the type rules above
     - statement:
         start: "^[[:space:]]*#[[:space:]]*include(_next)?\\b"
         end: "$"
         rules:
+            - identifier: "\\b[A-Z_][0-9A-Z_]+\\b"
             - constant.string: "<[^>]*>|\"[^\"]*\""
             - comment: "//.*|/\\*.*?\\*/"
 
