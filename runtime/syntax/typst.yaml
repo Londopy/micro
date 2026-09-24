@@ -9,9 +9,7 @@ detect:
 # and show are just words.
 
 rules:
-      # headings in markup mode. No leading whitespace is allowed: rules are
-      # also matched against the rest of a line after inline math, raw text
-      # etc., so "$x$ = 5" would otherwise look like a heading.
+      # headings
     - underlined: "^=+[[:space:]].*$"
 
       # the name that starts a code expression, e.g. #set, #emph, #z.at
